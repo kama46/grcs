@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home page
+{% endblock title %}
+{% block content %}
+<div class="title bg-white pt-2" style="display: flex;">
+    <div class="menu text-dark" id="btn">
+        <i class="fas fa-bars    "></i>
+    </div>
+    <h5 class="text-left text-uppercase" style="font-weight: 600; margin-left: 10px;">{{gate}} SECURITY ADMIN DASHBOARD</h5>
+    
+    
+    <p class="text-right " style="margin-left: 50%;">
+        <img src="https://www.svgrepo.com/show/311063/person.svg" width="30" height="30" alt="">
+        {{username}}
+    </p>
+
+    
+    
+</div>
+<div class="container">
+    <div class="row p-3">
+        <!-- <div class="col-md-4 p-3">
+            <a href="{% url 'view_items'%}" style="color:#5D4037; text-decoration: none;"> -->
+                <!-- <button class="btn p-5" style="background-color: #A52A2A" ><h6 class="text-dark">count: {{person_count}}</h6><h4 class="text-white">Registered Persons </h4></button> -->
+                <!-- <div class="card bg-white shadow p-2 ">
+                    
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="text-left display-6">{{items_count}}</p>
+                                <h6 class="card-title" style="font-weight: 600;">REGISTERED GADGETS</h6>
+                            </div>
+                            <div class="col-4 pt-3">
+                                <i class="p-3 fas fa-laptop    " style="font-size: 25px; border: 1px solid brown; border-radius: 50%;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </a>
+        </div> -->
+    
+        <div class="col-lg-6 p-3">
+            <a href="{% url 'view_badge'%}" style="color:#5D4037; text-decoration: none;">
+                <!-- <button class="btn p-5" style="background-color: #A52A2A" ><h6 class="text-dark">count: {{person_count}}</h6><h4 class="text-white">Registered Persons </h4></button> -->
+                <div class="card bg-white shadow p-2 margin-left:20px;">
+                    
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h6 class="card-title" style="font-weight: 600;">BADGED IN GADGETS</h6>
+                                <hr>
+                                <div class="card-text">
+                                    <a href="{% url 'badgedinstaff' %}?username={{username}}&gate={{gate}}" style="text-decoration: none; font-weight: 600;" class="text-dark" >Staff: {{badge_count}}</a><br>
+                                    <a href="{% url 'badgedinnonstaff' %}?username={{username}}&gate={{gate}}" style="text-decoration: none; font-weight: 600;" class="text-dark">Non-Staff: {{bin_nonstaff_count}}</a>
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="col-4 pt-3">
+                                <i class="p-3 fas fa-sign-in-alt    " style="font-size: 25px; border: 1px solid brown; border-radius: 50%; margin-left: 20px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-6 p-3">
+            <a href="{% url 'view_badge'%}" style="color:#5D4037; text-decoration: none;">
+                <!-- <button class="btn p-5" style="background-color: #A52A2A" ><h6 class="text-dark">count: {{person_count}}</h6><h4 class="text-white">Registered Persons </h4></button> -->
+                <div class="card bg-white shadow p-2 ">
+                    
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <h6 class="card-title" style="font-weight: 600;">BADGED OUT GADGETS</h6>
+                                <hr>
+                                <div class="card-text">
+                                    <a href="{% url 'badgedoutstaff' %}?username={{username}}&gate={{gate}}" style="text-decoration: none; font-weight: 600;" class="text-dark" >Staff: {{badge_count}}</a><br>
+                                    <a href="{% url 'badgedoutnonstaff' %}?username={{username}}&gate={{gate}}" style="text-decoration: none; font-weight: 600;" class="text-dark">Non-Staff: {{bout_nonstaff_count}}</a>
+                                </div> 
+                                
+                            </div>
+                            <div class="col-4 pt-3">
+                                <i class="p-3 ml-3 fas fa-sign-out-alt    " style="font-size: 25px; border: 1px solid brown; border-radius: 50%;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </a>
+        </div>
+        <!-- <div class="col-md-4 p-3">
+    
+            <a href="{% url 'view_person'%}">
+                <button class="btn btn-warning p-5"><h6 class="text-dark">count: {{person_count}}</h6><h4 class="text-white">Registered Persons</h4></button>
+            </a>
+        </div>
+        <div class="col-md-4 p-3 ">
+            <a href="{% url 'view_badge'%}">
+                <button class="btn btn-danger p-5"><h6 class="text-dark">count: {{badge_count}}</h6><h4>Badged in Items</h4></button>
+            </a>
+        </div> -->
+    </div>
+    <div class="row">
+        <div class="col-6 bg-white shadow rounded">
+            <div>
+                <canvas id="myChart"></canvas>
+              </div>
+        </div>
+        <div class="col-6 bg-white shadow rounded">
+            <div>
+                <canvas id="my1"></canvas>
+              </div>
+        </div>
+    </div>
+</div>
+{% load static %}
+<script src="{% static 'chart.js' %}"></script>
+<script src="{% static 'chart.min.js' %}"></script>
+
+<script>
+    const labels = {{monthNumber|safe}};
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Badged in gadgets for non staff',
+      backgroundColor: 'rgb(0,0,100)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: {{count}},
+    }]
+  };
+
+  const label = {{bo_monthNumber|safe}};
+
+  const data1 = {
+    labels: label,
+    datasets: [{
+      label: 'Badged out gadgets for non staff',
+      backgroundColor: 'rgb(0,100,0)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: {{bo_count}},
+    }]
+  };
+
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {}
+  };
+
+  const config1 = {
+    type: 'bar',
+    data: data1,
+    options: {}
+  };
+
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+  const my1 = new Chart(
+    document.getElementById('my1'),
+    config1
+  );
+</script>
+
+{% endblock content %}

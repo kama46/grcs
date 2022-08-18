@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}
+Register Person
+{% endblock %}
+{% block content %}
+<div class="form">
+
+    <div class="title text-center text-info p-3">
+        <h2 class="text-center text-danger">Staff and Non Staff Registration</h2>
+    </div>
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="row p-2">
+            <div class="col-6">
+                <div class="form-group fname">
+                    <input type="text" name="fname" class="form-control" placeholder="First Name">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group lname">
+                     <input type="text" name="lname" class="form-control" placeholder="Last Name">
+                </div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-6">
+                <div class="form-group organisation">
+                    <input type="text" name="organisation" class="form-control" placeholder="Enter Organisation">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group department">
+                    <input type="text" name="department" class="form-control" placeholder="Department">
+                </div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-6">
+                <div class="form-group telphone">
+                     <input type="text" name="telphone" class="form-control" placeholder="Telphone">
+                </div>
+            </div>
+            <div class="col-6">
+                 <div class="form-group email">
+                    <input type="email" name="email" class="form-control" placeholder="Email">
+                 </div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-6">
+                <div class="form-group created_by">
+                    <input type="text" name="created_by" class="form-control" placeholder="Created By">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group create_date">
+                    <input type="text" name="create_date" class="form-control" placeholder="Create Date">
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-2">
+            <div class="col-6">
+                <div class="form-group updated_by">
+                    <input type="text" name="updated_by" class="form-control" placeholder="Last updated By">
+                </div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <div class="form-group created_by">
+                     <button class="btn btn-info ">Register</button>
+                </div>
+            </div>
+        </div>
+        <div class="message">
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+
+
+
+{% endblock%}

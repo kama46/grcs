@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}
+Badge Out gadget
+{% endblock %}
+{% block content %}
+<!-- <div class="container"> -->
+    <div class="title bg-white pt-2" style="display: flex;">
+        <div class="menu text-dark" id="btn">
+            <i class="fas fa-bars    "></i>
+        </div>
+        <h5 class="text-left" style="font-weight: 600; margin-left: 10px;">BADGE OUT STAFF</h5>
+        <p class="text-right" style="margin-left: 60%;">
+          <img src="https://www.svgrepo.com/show/311063/person.svg" width="30" height="30" alt="">
+          {{username}}
+        </p>
+    </div>
+
+    <button type="button" class="btn bg-white shadow rounded mt-3 mb-3" style="border: 1px solid #2A0403; margin-left: 20px;" data-bs-toggle="modal" data-bs-target="#addPersonModal">
+        Scan Bank Device
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="addPersonModal" tabindex="-1" aria-labelledby="addPersonModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addPersonModalLabel">Scan bank device </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+              <form action="{% url 'person'%}" method="POST" >
+      
+                  {% csrf_token %}
+                  {{ form_person.as_p }}
+                <input type="submit" name="Submit" value="Scan device" class="btn btn-success">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+<!-- </div> -->
+<!-- register personal gadget -->
+<right>
+  <a href="" style="float: right; font-size: 12px;" class="btn btn-primary mt-3">View list</a>
+</right>
+    <div class="register p-3">
+      
+      <div class="row">
+        
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Employee </th>
+                <th>Bank Gadget</th>
+                <th>Personal Device</th>
+                <th>Number of gadgets</th>
+                <th>Date/time</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row">00117</td>
+                <td>None</td>
+                <td>Dell</td>
+                <td>1</td>
+                <td></td>
+                <td>
+                  <a href="" class="btn btn-warning">BADGE OUT</a>
+                </td>
+
+              </tr>
+              
+            </tbody>
+          </table>
+        
+      </div>
+    </div>
+{% endblock%}

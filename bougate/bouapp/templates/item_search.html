@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+items display
+{% endblock %}
+{% block content %}
+<h1 class="text-center text-danger"> Searched  Items</h1>
+<form action="{% url 'search_item'%}" method="GET" class=" d-flex">
+  <input type="text" name="query" class="form-control" placeholder="search here" aria-label="search">
+  <button class="btn btn-success" type="submit">search</button>
+</form>
+  <table class="table table-striped">
+  {% if items %}
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Serial Number</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in  items %}
+    <tr>
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.item_name}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.serial_number}}</td>
+      <td>
+        <a href="delete_item/{{item.id}}"><button class="btn btn-danger">delete</button></a>
+        <a href="update_item/{{item.id}}/"><button class="btn btn-primary">Update</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+    <h5>No data Items search to display</h5>
+{% endif%}
+
+
+
+</form>
+{% endblock%}

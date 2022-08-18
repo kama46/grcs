@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}
+Badge Out gadget
+{% endblock %}
+{% block content %}
+
+<div class="title bg-white pt-2" style="display: flex;">
+    <div class="menu text-dark" id="btn">
+        <i class="fas fa-bars    "></i>
+    </div>
+    <h5 class="text-left" style="font-weight: 600; margin-left: 10px;">BADGE OUT NON STAFF</h5>
+    <p class="text-right" style="margin-left: 60%;">
+      <img src="https://www.svgrepo.com/show/311063/person.svg" width="30" height="30" alt="">
+      {{username}}
+    </p>
+</div>
+
+
+  
+<!-- </div> -->
+<!-- register personal gadget -->
+
+<div class="register">
+  <h5 class="text-left" style="font-weight: 600; margin-left: 10px;"></h5>
+  <div class="row">
+    
+    <div class="modal-body ">
+      <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Dest Department</th>
+                <th>Contact</th>
+                <th>Gadget type</th>
+                <th>Number of gadgets</th>
+                <!-- <th>Reason</th> -->
+                <th>Gate</th>
+                <!-- <th>Date/time</th> -->
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr style="font-size: 13px;">
+                <td scope="row">{{result.id}}</td>
+                <td>{{result.fullname}}</td>
+                <td>{{result.dest_dept}}</td>
+                <td>{{result.contact}}</td>
+                <td>{{result.gadget_type}}</td>
+                <td>{{result.no_of_gadgets}}</td>
+                <!-- <td>{{result.reason}}</td> -->
+                <td>{{result.gate}}</td>
+                <!-- <td>{{result.date_time}}</td> -->
+                <td class="text-center">
+                    <a href="delete_badge/{{result.id}}/?username={{username}}&gate={{gate}}" class="btn btn-danger" style="font-size: 12px;">Badge Out</a>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+      
+    </div>
+  </div>
+</div>
+    
+  </div>
+</div>
+
+{% endblock%}

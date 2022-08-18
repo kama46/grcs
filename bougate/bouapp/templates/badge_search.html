@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+items display
+{% endblock %}
+{% block content %}
+<h1 class="text-center text-danger"> Searched  Badges</h1>
+<form action="{% url 'search_badge'%}" method="GET" class=" d-flex">
+  <input type="text" name="query" class="form-control" placeholder="search here" aria-label="search">
+  <button class="btn btn-success" type="submit">search</button>
+</form>
+  <table class="table table-striped">
+  {% if badges %}
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Person Name</th>
+      <th scope="col">Location/Gate</th>
+      <th scope="col">Badge Out</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for badge in  badges %}
+    <tr>
+      <th scope="row">{{badge.id}}</th>
+      <td>{{badge.item_name}}</td>
+      <td>{{badge.person_name}}</td>
+      <td>{{badge.location}}</td>
+      <td><a href="delete_badge/{{badge.id}}/"><button class="btn btn-primary">Badge Out</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+    <h5>No data badge search to display</h5>
+{% endif%}
+
+
+
+</form>
+{% endblock%}

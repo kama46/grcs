@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+Register Item Here
+{% endblock %}
+{% block content %}
+<h1 class="text-center text-danger">Register Item/Property</h1>
+<form action="{% url 'register_item'%}" method="post">
+
+  {% csrf_token %}
+  {{ form_item.as_p }}
+    <input type="submit" name="Submit" value="Register Item" class="btn btn-info">
+
+</form>
+{% endblock%}

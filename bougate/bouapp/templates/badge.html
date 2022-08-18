@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}
+Badge in/out Item
+{% endblock %}
+{% block content %}
+<h1 class="text-center text-danger">Badge in Items</h1>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPersonModal">
+  Add Person
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addPersonModal" tabindex="-1" aria-labelledby="addPersonModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addPersonModalLabel">Add new Person </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-2">
+        <form action="{% url 'person'%}" method="POST" >
+
+            {% csrf_token %}
+            {{ form_person.as_p }}
+          <input type="submit" name="Submit" value="Add Person" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Working on Item add modal-->
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addItemModal">
+  Add Item
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addItemModalLabel">Add new Item </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'register_item'%}" method="POST">
+
+            {% csrf_token %}
+
+          {{ form_item.as_p }}
+
+          <input type="submit" name="Submit" value="Add Item" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<form action="" method="post">
+
+  {% csrf_token %}
+
+  {{ form_badge.as_p }}
+    <input type="submit" class="btn btn-success" name="Submit" value="Badge In">
+
+</form>
+{% endblock%}

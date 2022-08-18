@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+items display
+{% endblock %}
+{% block content %}
+<h1 class="text-center text-danger"> People Searched</h1>
+<form action="{% url 'search_person'%}" method="GET" class=" d-flex">
+  <input type="text" name="query" class="form-control" placeholder="search here" aria-label="search">
+  <button class="btn btn-success" type="submit">search</button>
+</form>
+  <table class="table table-striped">
+  {% if persons %}
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Organisation</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for person in  persons %}
+    <tr>
+      <th scope="row">{{person.id}}</th>
+      <td>{{person.first_name}}</td>
+      <td>{{person.last_name}}</td>
+      <td>{{person.category}}</td>
+      <td>{{person.organisation}}</td>
+      <td>
+        <a href="delete_person/{{person.id}}"><button class="btn btn-danger">delete</button></a>
+        <a href="update_person/{{person.id}}/"><button class="btn btn-primary">Update</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+    <h5>No data People search to display</h5>
+{% endif%}
+
+
+
+</form>
+{% endblock%}

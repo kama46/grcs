@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>
+      Login Page
+    </title>
+    <style>
+      .login
+      {
+        margin-top: 30px;
+        background-color: rgba(0, 0, 0, 0.507);
+        padding-bottom: 20px;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    {% load static %}
+    <div class="container-fluid" style="height: 100vh; background: url('{% static 'bg2.jpg' %}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+      <div class="row login">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="padding-top: 60px;">
+          <center>
+            {% load static %}
+            <img src="{% static 'bou.png'%}" height="50px" alt="" width="70" height="550">
+          </center>
+          <h4 class="text-center text-white">BANK OF UGANDA</h4>
+          <h6 class="text-center text-white mb-4">GADGET REGISTRATION AND CLEARANCE SYSTEM</h6>
+          <!-- login form -->
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <form action="{% url 'login'%}" method="post" class="shadow-md" style=" padding: 15px 25px; border: 2px solid rgb(15, 1, 1); border-radius: 20px; ">
+                {% csrf_token %}
+                <h6 class="text-center text-white">ADMIN LOGIN</h6>
+                {% for message in messages %}
+                <p class="text-danger text-center">{{ message }}</p>
+                {% endfor %}
+                <div class="form-group text-white">
+                  <label for="">Username: </label>
+                  <input type="text" name="username" class="form-control">
+                </div>
+                <div class="form-group text-white">
+                  <label for="">Gate: </label>
+                  <!-- <input type="text" name="gate" class="form-control"> -->
+                  <select name="gate" class="form-control" id="">
+                    <option value="">----------</option>
+                    <option value="shimoni">Shimoni</option>
+                    <option value="plot 45">Plot 45</option>
+                    <option value="kampala road">Kampala Road</option>
+                  </select>
+                </div>
+                <div class="form-group text-white">
+                  <label for="">Password: </label>
+                  <input type="password" name="password" class="form-control">
+                </div>
+      
+                <!-- <button class="form-control btn text-white" style="background-color: #200202;">Login</button> -->
+                <input type="submit" value="Login" class="form-control btn text-white mt-3" style="background-color: #200202;">
+                <a href=""><p class="text-center mt-2">Reset Password</p></a>
+      
+              </form>
+            </div>
+            <div class="col-3"></div>
+          </div>
+          
+        </div>
+        <div class="col-lg-3"></div>
+      </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-3.6.0.min.js"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block title %}
+Badge in gadget
+{% endblock %}
+{% block content %}
+
+<div class="title bg-white pt-2" style="display: flex;">
+    <div class="menu text-dark" id="btn">
+        <i class="fas fa-bars    "></i>
+    </div>
+    <h5 class="text-left" style="font-weight: 600; margin-left: 10px;">BADGED IN  NON STAFF LIST</h5>
+    <p class="text-right" style="margin-left: 60%;">
+      <img src="https://www.svgrepo.com/show/311063/person.svg" width="30" height="30" alt="">
+      {{username}}
+    </p>
+</div>
+<a href="{% url 'badgeIn_nonstaff' %}?username={{username}}&gate={{gate}}" class="float-right btn btn-primary mt-2" style="font-size: 13px; margin-left: 90%;">Badge in new</a>
+<table class="table mt-1">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Visitor ID</th>
+            <th>Full Name</th>
+            <th>Dest Department</th>
+            <th>Contact</th>
+            <th>Gadget type</th>
+            <th>Number of gadgets</th>
+            <!-- <th>Reason</th> -->
+            <th>Gate</th>
+            <th>Date/time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for result in results %}
+        <tr style="font-size: 13px;">
+            <td scope="row">{{result.id}}</td>
+            <td>{{result.visitor_ID}}</td>
+            <td>{{result.fullname}}</td>
+            <td>{{result.dest_dept}}</td>
+            <td>{{result.contact}}</td>
+            <td>{{result.gadget_type}}</td>
+            <td>{{result.no_of_gadgets}}</td>
+            <!-- <td>{{result.reason}}</td> -->
+            <td>{{result.gate}}</td>
+            <td>{{result.date_time_in}}</td>
+            <td class="text-center">
+                <!-- capturing data for -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a href=""><i class="fas fa-edit    "></i></a>
+                    <span class="text-primary" style="font-size: 12px; ">Edit</span>
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'badgeIn_nonstaff' %}?username={{username}}&gate={{gate}}" method="post">
+                                
+                                {% for message in messages %}
+                                  <input type="text" class="m-2 form-control text-center text-dark" style="background-color: #FFFDD0; font-weight:600; font-size: 15px;" value="{{message}}">
+                                {% endfor %}
+                                {% csrf_token %}
+                                
+                                <div class="row">
+                                  <div class="form-group col-6 mt-2">
+                                    <label for="">Name: </label>
+                                    <input type="text" name="NAME" class="form-control">
+                                  </div>
+                                  <div class="form-group col-6 mt-2">
+                                    <label for="">Visitor's ID: </label>
+                                    <input type="text" name="ID" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-6 mt-2">
+                                    <label for="">Department: </label>
+                                    <input type="text" name="DEPARTMENT" class="form-control">
+                                  </div>
+                                  <div class="form-group col-6 mt-2">
+                                    <label for="">Contact: </label>
+                                    <input type="text" name="CONTACT" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-6 mt-2">
+                                    <label for="">Gadget: </label>
+                                    <input type="text" name="GADGET" class="form-control">
+                                  </div>
+                                  <div class="form-group col-6 mt-2">
+                                    <label for="">Number of Gadgets: </label>
+                                    <input type="number" name="NO_GADGETS" class="form-control">
+                                  </div>
+                                </div>
+                              
+                                <!-- <div class="row form-group"> -->
+                                  <!-- <div class="col-"> -->
+                                    <input type="submit" name="Submit" value="Update " class=" mt-3 mb-3 btn text-white" style = "background-color: #2A0403;">
+                                  <!-- </div> -->
+                                  <!-- <div class="col-6"> -->
+                                    
+                                  <!-- </div> -->
+                                <!-- </div> -->
+                              </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {%endfor%}
+        
+    </tbody>
+</table>
+<!-- {% for contact in page_obj %}
+    {# Each "contact" is a Contact model object. #}
+    {{ contact.full_name|upper }}<br>
+    ...
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div> -->
+
+{% endblock%}

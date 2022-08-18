@@ -1,0 +1,153 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar
+{
+    width: 15%;
+    height: 100vh;
+    /* background-color: #963d0f; */
+    position: fixed;
+    top: 0;
+}
+
+.sidebar.active
+{
+    width: 7%;
+}
+
+.sidebar.active img
+{
+    width: 45px;
+    height: 45px;
+    margin-left: 18px;
+}
+
+.sidebar.active .title h6
+{
+    display: none;
+}
+
+.sidebar.active .menu
+{
+    padding-top: 10px;
+}
+
+.sidebar.active .links span
+{
+    display: none;
+}
+
+.sidebar.active .links i
+{
+    font-size: 22px;
+    margin-left: 15px;
+}
+
+.menu
+{
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.sidebar a
+{
+    color: #2A0403;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.sidebar a:hover
+{
+    color: #33383f;
+
+}
+
+.sidebar .outer
+{
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+.sidebar span
+{
+    margin-left: 10px;
+}
+
+.links
+{
+    margin-left: 20px;
+}
+
+.content
+{
+    width: 85%;
+    height: 100vh;
+    margin-left: 15%;
+    background-color: #cfcbcbd0;
+}
+
+.content.active
+{
+    width: 93%;
+    margin-left: 7%;
+}
+
+.content.active footer
+{
+    /* width: 93%; */
+    margin-left: 7%;
+}
+
+.arrow::after
+{
+    cursor: pointer;
+    user-select: none;
+    content: "";
+    border: solid #2A0403;
+    color: #2A0403;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    /* color: #fff; */
+    transform: rotate(-45deg);
+    margin-left: 30px;
+}
+
+.arrow-down::after
+{
+    transform: rotate(45deg);
+}
+
+
+.nested
+{
+    display: none;
+}
+
+.nested li
+{
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.nested.active
+{
+    display: block;
+}
+
+form input
+{
+    /* border: 2px solid black;
+    height: 50px; */
+}
+
+
+
